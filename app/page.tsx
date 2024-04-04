@@ -1,13 +1,13 @@
-import { Container } from "./components/container";
-import { HomeBanner } from "./components/home-banner";
+import { Container } from "@/app/components/container";
+import { HomeBanner } from "@/app/components/home-banner";
+import { ProductList } from "@/app/components/products/list";
 
 export default function Home() {
   return (
     <div className="p-8">
       <Container>
-        <div>
-          <HomeBanner />
-        </div>
+        <HomeBanner />
+        <ProductList />
       </Container>
     </div>
   );
