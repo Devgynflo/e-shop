@@ -6,7 +6,8 @@ import { getAverageScore } from "@/utils/average-score";
 import { Rating } from "@mui/material";
 import { NextPage } from "next";
 import { useCallback, useState } from "react";
-import { SetProductColor } from "./set-color";
+import { SetProductColor } from "./_components/set-color";
+import { SetQuantity } from "./_components/set-quantity";
 
 interface ProductDetailsProps {
   product?: any;
@@ -26,6 +27,21 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
   const handleColorSelect = useCallback((value: SelectedImgType) => {
     setCardProduct((prev) => {
       return { ...prev, selectImg: value };
+    });
+  }, []);
+
+  const handleQtyIncrease = useCallback(() => {
+    setCardProduct((prev) => {
+      return { ...prev, quantity: prev.quantity + 1 };
+    });
+  }, []);
+
+  const handleQtyDecrease = useCallback(() => {
+    setCardProduct((prev) => {
+      if (prev.quantity === 1) {
+        return { ...prev, quantity: 1 };
+      }
+      return { ...prev, quantity: prev.quantity - 1 };
     });
   }, []);
 
@@ -59,9 +75,11 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
           handleColorSelect={handleColorSelect}
         />
         <Horizontal />
-        <div>
-          <span className="font-semibold uppercase">quantity: </span>
-        </div>
+        <SetQuantity
+          cardProduct={cardProduct}
+          handleQtyDecrease={handleQtyDecrease}
+          handleQtyIncrease={handleQtyIncrease}
+        />
       </article>
     </div>
   );

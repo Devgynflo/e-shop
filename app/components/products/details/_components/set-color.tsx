@@ -31,7 +31,7 @@ export const SetProductColor: NextPage<SetProductColorProps> = ({
             <div
               className="size-5 cursor-pointer rounded-full border-[1.2px] border-slate-300"
               style={{ background: img.colorCode }}
-            ></div>
+            />
           </div>
         ))}
       </div>
