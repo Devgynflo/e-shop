@@ -6,6 +6,7 @@ import { getAverageScore } from "@/utils/average-score";
 import { Rating } from "@mui/material";
 import { NextPage } from "next";
 import { useCallback, useState } from "react";
+import { Button } from "./_components/button";
 import { SetProductColor } from "./_components/set-color";
 import { SetQuantity } from "./_components/set-quantity";
 
@@ -80,6 +81,7 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
           handleQtyDecrease={handleQtyDecrease}
           handleQtyIncrease={handleQtyIncrease}
         />
+        <Button label="Add to cart" onclick={() => {}} />
       </article>
     </div>
   );
