@@ -1,31 +1,16 @@
 "use client";
 
+import { CardProductType, SelectedImgType } from "@/@types";
 import { cn } from "@/lib/utils";
 import { getAverageScore } from "@/utils/average-score";
 import { Rating } from "@mui/material";
 import { NextPage } from "next";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { SetProductColor } from "./set-color";
 
 interface ProductDetailsProps {
   product?: any;
 }
-
-export type CardProductType = {
-  id: string;
-  name: string;
-  description: string;
-  category: string;
-  brand: string;
-  selectImg: SelectedImgType;
-  quantity: number;
-  price: number;
-};
-
-export type SelectedImgType = {
-  color: string;
-  colorCode: string;
-  image: string;
-};
 
 const Horizontal = () => {
   return <hr className="my-2 w-[30%]" />;
@@ -33,11 +18,16 @@ const Horizontal = () => {
 
 export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
   const average = getAverageScore(product.reviews);
-  const [cardProduct, setCardproduct] = useState<CardProductType>({
+  const [cardProduct, setCardProduct] = useState<CardProductType>({
     ...product,
     quantity: 1,
     selectImg: { ...product.images[0] },
   });
+  const handleColorSelect = useCallback((value: SelectedImgType) => {
+    setCardProduct((prev) => {
+      return { ...prev, selectImg: value };
+    });
+  }, []);
 
   return (
     <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
@@ -63,9 +53,11 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
           {product.inStock ? "In stock" : "Out of stock"}
         </div>
         <Horizontal />
-        <div>
-          <span className="font-semibold uppercase">color: </span>
-        </div>
+        <SetProductColor
+          images={product.images}
+          cardProduct={cardProduct}
+          handleColorSelect={handleColorSelect}
+        />
         <Horizontal />
         <div>
           <span className="font-semibold uppercase">quantity: </span>
