@@ -1,24 +1,27 @@
 "use client";
 
+import { getAverageScore } from "@/utils/average-score";
 import { formatPrice } from "@/utils/format-price";
 import { truncateText } from "@/utils/truncate-text";
 import { Rating } from "@mui/material";
 import { StarIcon } from "lucide-react";
 import { NextPage } from "next";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   product: any;
 }
 
 export const ProductCard: NextPage<ProductCardProps> = ({ product }) => {
-  const averageReview =
-    product.reviews.reduce((acc: number, item: any) => {
-      return acc + item.rating;
-    }, 0) / product.reviews.length;
+  const router = useRouter();
+  const averageReview = getAverageScore(product.reviews);
 
   return (
-    <article className="col-span-1 cursor-pointer rounded-sm border border-slate-200 bg-slate-50 p-2 text-center text-sm transition hover:scale-105">
+    <article
+      className="col-span-1 cursor-pointer rounded-sm border border-slate-200 bg-slate-50 p-2 text-center text-sm transition hover:scale-105"
+      onClick={() => router.push(`/products/${product.id}`)}
+    >
       <div className="flex w-full flex-col items-center gap-1">
         <div className="relative aspect-square w-full overflow-hidden">
           <Image
