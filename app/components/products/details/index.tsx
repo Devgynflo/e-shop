@@ -7,6 +7,7 @@ import { Rating } from "@mui/material";
 import { NextPage } from "next";
 import { useCallback, useState } from "react";
 import { Button } from "./_components/button";
+import { ProductImage } from "./_components/product-image";
 import { SetProductColor } from "./_components/set-color";
 import { SetQuantity } from "./_components/set-quantity";
 
@@ -48,8 +49,15 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
 
   return (
     <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-      <aside>images</aside>
-      <article className="flex flex-col gap-1 text-sm text-slate-500">
+      <aside>
+        <ProductImage
+          product={product}
+          cardProduct={cardProduct}
+          handleColorSelect={handleColorSelect}
+        />
+      </aside>
+
+      <article className="flex flex-col gap-2 text-sm text-slate-500">
         <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
         <div className="flex items-center gap-2">
           <Rating value={average} readOnly />
@@ -81,6 +89,8 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
           handleQtyDecrease={handleQtyDecrease}
           handleQtyIncrease={handleQtyIncrease}
         />
+        <Horizontal />
+
         <Button label="Add to cart" onclick={() => {}} />
       </article>
     </div>

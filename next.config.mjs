@@ -5,6 +5,12 @@ const nextConfig = {
       {
         hostname: "m.media-amazon.com",
       },
+      {
+        hostname: "i.pravatar.cc",
+      },
+      {
+        hostname: "lh3.googleusercontent.com",
+      },
     ],
   },
 };

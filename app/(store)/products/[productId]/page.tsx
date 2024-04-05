@@ -1,5 +1,6 @@
 import { Container } from "@/app/components/container";
 import { ProductDetails } from "@/app/components/products/details";
+import { ProductRatings } from "@/app/components/products/details/_components/ratings";
 import { product } from "@/data/product-seed";
 import { NextPage } from "next";
 
@@ -15,7 +16,8 @@ const ProductPage: NextPage<ProductPageProps> = ({
   return (
     <section className="p-8">
       <Container>
-        <ProductDetails product={product}></ProductDetails>
+        <ProductDetails product={product} />
+        <ProductRatings product={product} />
       </Container>
     </section>
   );
