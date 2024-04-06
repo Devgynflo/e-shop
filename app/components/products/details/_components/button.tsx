@@ -9,7 +9,7 @@ interface ButtonProps {
   disabled?: boolean;
   outline?: boolean;
   small?: boolean;
-  custom?: string;
+  className?: string;
   icon?: IconType;
   onclick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -19,7 +19,7 @@ export const Button: NextPage<ButtonProps> = ({
   disabled,
   outline,
   small,
-  custom,
+  className,
   onclick,
   icon: Icon,
 }) => {
@@ -31,7 +31,7 @@ export const Button: NextPage<ButtonProps> = ({
         disabled && "cursor-not-allowed opacity-70",
         outline && "bg-white text-slate-700",
         small && "border-[1px] px-2 py-1 text-sm",
-        custom,
+        className,
       )}
       disabled={disabled}
     >
