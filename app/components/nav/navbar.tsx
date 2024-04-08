@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { Redressed } from "next/font/google";
 import Link from "next/link";
 import { Container } from "../container";
+import { CartCount } from "./cart-count";
 
 const redressed = Redressed({ subsets: ["latin"], weight: "400" });
 
@@ -22,9 +23,7 @@ export const Navbar: NextPage<NavbarProps> = ({}) => {
             </Link>
             <div className="hidden md:block">Search</div>
             <div className="items-cnter flex gap-8 md:gap-12">
-              <Link href={"/cart"}>
-                <div>CartCount</div>
-              </Link>
+              <CartCount />
               <div>UserMenu</div>
             </div>
           </div>

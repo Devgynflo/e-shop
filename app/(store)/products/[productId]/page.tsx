@@ -1,7 +1,8 @@
 import { Container } from "@/app/components/container";
 import { ProductDetails } from "@/app/components/products/details";
 import { ProductRatings } from "@/app/components/products/details/_components/ratings";
-import { product } from "@/data/product-seed";
+import { products } from "@/data/products-seed";
+
 import { NextPage } from "next";
 
 interface ProductPageProps {
@@ -13,6 +14,7 @@ interface ProductPageProps {
 const ProductPage: NextPage<ProductPageProps> = ({
   params,
 }: ProductPageProps) => {
+  const product = products.find((item) => item.id === params.productId);
   return (
     <section className="p-8">
       <Container>

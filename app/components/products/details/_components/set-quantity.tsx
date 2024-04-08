@@ -21,6 +21,7 @@ export const SetQuantity: NextPage<SetQuantityProps> = ({
       {!cartCounter && <div className="font-semibold uppercase">quantity:</div>}
       <div className="flex items-center gap-4 text-base">
         <button
+          disabled={cardProduct.quantity === 1 ? true : false}
           onClick={handleQtyDecrease}
           className="rounded-sm border-[1.2px] border-slate-300 px-2"
         >

@@ -1,5 +1,8 @@
+"use client";
+
 import { CardProductType } from "@/@types";
 import { SetQuantity } from "@/app/components/products/details/_components/set-quantity";
+import { useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/utils/format-price";
 import { truncateText } from "@/utils/truncate-text";
 import { NextPage } from "next";
@@ -11,6 +14,12 @@ interface CartContentProps {
 }
 
 export const CartItemContent: NextPage<CartContentProps> = ({ item }) => {
+  const {
+    removeProductToCart,
+    increaseProductQuantity,
+    decreaseProductQuantity,
+    handleRemoveAllProducts,
+  } = useCart();
   return (
     <div className="grid grid-cols-5 gap-4 border border-slate-200 py-4 text-xs md:text-sm">
       <div className="col-span-2 flex gap-2 justify-self-start md:gap-4">
@@ -30,7 +39,10 @@ export const CartItemContent: NextPage<CartContentProps> = ({ item }) => {
           </Link>
           <div>{item.selectImg.color}</div>
           <div className="w-[70px]">
-            <button className="text-slate-500 underline" onClick={() => {}}>
+            <button
+              className="text-slate-500 underline"
+              onClick={() => removeProductToCart(item.id)}
+            >
               Remove
             </button>
           </div>
@@ -41,8 +53,8 @@ export const CartItemContent: NextPage<CartContentProps> = ({ item }) => {
         <SetQuantity
           cartCounter
           cardProduct={item}
-          handleQtyIncrease={() => {}}
-          handleQtyDecrease={() => {}}
+          handleQtyIncrease={() => increaseProductQuantity(item)}
+          handleQtyDecrease={() => decreaseProductQuantity(item)}
         />
       </div>
       <div className="justify-self-end font-semibold">
