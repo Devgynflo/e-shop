@@ -22,7 +22,9 @@ export const Navbar: NextPage<NavbarProps> = ({}) => {
             </Link>
             <div className="hidden md:block">Search</div>
             <div className="items-cnter flex gap-8 md:gap-12">
-              <div>CartCount</div>
+              <Link href={"/cart"}>
+                <div>CartCount</div>
+              </Link>
               <div>UserMenu</div>
             </div>
           </div>

@@ -6,6 +6,7 @@ import { useCart } from "@/hooks/use-cart";
 import { NextPage } from "next";
 import Link from "next/link";
 import { MdArrowBack } from "react-icons/md";
+import { CartItemContent } from "./cart-content";
 
 interface CartClientProps {}
 
@@ -40,7 +41,7 @@ export const CartClient: NextPage<CartClientProps> = ({}) => {
       </div>
       <div>
         {cartProducts.map((product) => (
-          <div key={product.id}>{product.name}</div>
+          <CartItemContent key={product.id} item={product} />
         ))}
       </div>
       <div className="flex justify-between gap-4 border-t-[1.5px] border-slate-200 py-4">
