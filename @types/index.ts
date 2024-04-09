@@ -1,3 +1,5 @@
+import { User } from "@prisma/client";
+
 export type CardProductType = {
   id: string;
   name: string;
@@ -13,4 +15,13 @@ export type SelectedImgType = {
   color: string;
   colorCode: string;
   image: string;
+};
+
+export type SafeUser = Omit<
+  User,
+  "createdAt" | "updatedAt" | "emailVerified"
+> & {
+  createdAt: string;
+  updatedAt: string;
+  emailVerified: string | null;
 };
