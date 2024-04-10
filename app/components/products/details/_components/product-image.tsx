@@ -25,7 +25,7 @@ export const ProductImage: NextPage<ProductImageProps> = ({
             key={item.colorCode}
             className={cn(
               "relative aspect-square w-4/5 rounded border-teal-300",
-              cardProduct.selectImg.color === item.color && "border-[1.5px]",
+              cardProduct.selectedImg.color === item.color && "border-[1.5px]",
             )}
           >
             <Image
@@ -43,7 +43,7 @@ export const ProductImage: NextPage<ProductImageProps> = ({
         <Image
           sizes="100%"
           priority
-          src={cardProduct.selectImg.image}
+          src={cardProduct.selectedImg.image}
           alt={cardProduct.name}
           fill
           className="h-full max-h-[500px] min-h-[300px] w-full object-contain sm:min-h-[400px]"

@@ -9,6 +9,7 @@ import {
 import toast from "react-hot-toast";
 
 type CartContextType = {
+  paymentIntent: string | null;
   cartTotalQty: number;
   cartTotalAmount: number;
   cartProducts: CardProductType[] | null;
@@ -17,6 +18,7 @@ type CartContextType = {
   handleProductToCart: (product: CardProductType) => void;
   removeProductToCart: (productId: string) => void;
   handleRemoveAllProducts: () => void;
+  handleSetPaymentIntent: (val: string | null) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -31,18 +33,17 @@ export const CartContextProvider = (props: Props) => {
   const [cartProducts, setCartProducts] = useState<CardProductType[] | null>(
     null,
   );
+  const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
   useEffect(() => {
+    const eShopPaymentIntent: any = localStorage.getItem("eShopPaymentIntent");
     const cartItems: any = localStorage.getItem("cart-storage");
     if (cartItems) {
       setCartProducts(() => JSON.parse(cartItems));
     }
-  }, []);
+    const paymentIntent: string | null = JSON.parse(eShopPaymentIntent);
 
-  const handleRemoveAllProducts = useCallback(() => {
-    setCartProducts(null), setCartTotalQty(0);
-
-    localStorage.removeItem("cart-storage");
+    setPaymentIntent(paymentIntent);
   }, []);
 
   useEffect(() => {
@@ -147,15 +148,28 @@ export const CartContextProvider = (props: Props) => {
     [cartProducts],
   );
 
+  const handleSetPaymentIntent = useCallback((val: string | null) => {
+    setPaymentIntent(val);
+    localStorage.setItem("eShopPaymentIntent", JSON.stringify(val));
+  }, []);
+
+  const handleRemoveAllProducts = useCallback(() => {
+    setCartProducts(null), setCartTotalQty(0);
+
+    localStorage.removeItem("cart-storage");
+  }, []);
+
   const value = {
     cartTotalQty,
     cartTotalAmount,
     cartProducts,
+    paymentIntent,
     handleProductToCart,
     removeProductToCart,
     increaseProductQuantity,
     decreaseProductQuantity,
     handleRemoveAllProducts,
+    handleSetPaymentIntent,
   };
 
   return <CartContext.Provider value={value} {...props} />;

@@ -79,7 +79,10 @@ export const LoginForm: NextPage<LoginFormProps> = ({ currentUser }) => {
         <div className="space-y-4">
           <Heading title="Sign in to E~Shop" />
           <Button
-            onClick={() => {signIn("google")}}
+            onClick={(e) => {
+              e.stopPropagation();
+              signIn("google");
+            }}
             variant={"outline"}
             className="flex w-full items-center gap-2"
           >

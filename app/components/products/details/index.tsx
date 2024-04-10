@@ -30,9 +30,14 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
   // State
   const [isProductInCart, setIsProductInCart] = useState(false);
   const [cardProduct, setCardProduct] = useState<CardProductType>({
-    ...product,
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    category: product.category,
+    brand: product.brand,
+    price: product.price,
     quantity: 1,
-    selectImg: { ...product.images[0] },
+    selectedImg: { ...product.images[0] },
   });
 
   useEffect(() => {
@@ -49,7 +54,7 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
 
   const handleColorSelect = useCallback((value: SelectedImgType) => {
     setCardProduct((prev) => {
-      return { ...prev, selectImg: value };
+      return { ...prev, selectedImg: value };
     });
   }, []);
 

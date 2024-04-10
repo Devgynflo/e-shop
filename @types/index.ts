@@ -6,7 +6,7 @@ export type CardProductType = {
   description: string;
   category: string;
   brand: string;
-  selectImg: SelectedImgType;
+  selectedImg: SelectedImgType;
   quantity: number;
   price: number;
 };

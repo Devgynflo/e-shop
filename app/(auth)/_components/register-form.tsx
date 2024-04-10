@@ -86,7 +86,8 @@ export const RegisterForm: NextPage<RegisterFormProps> = ({ currentUser }) => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
             <Button
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation()
                 signIn("google");
               }}
               variant={"outline"}

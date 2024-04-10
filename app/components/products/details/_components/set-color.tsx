@@ -25,7 +25,7 @@ export const SetProductColor: NextPage<SetProductColorProps> = ({
             key={img.colorCode}
             className={cn(
               "flex size-7 items-center justify-center rounded-full border-teal-300",
-              cardProduct.selectImg.color === img.color && "border-[1.5px]",
+              cardProduct.selectedImg.color === img.color && "border-[1.5px]",
             )}
           >
             <div

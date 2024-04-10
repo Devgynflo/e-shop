@@ -1,5 +1,6 @@
 "use client";
 
+import { CardProductType } from "@/@types";
 import { Heading } from "@/app/components/heading";
 import { Button } from "@/app/components/products/details/_components/button";
 import { useCart } from "@/hooks/use-cart";
@@ -41,7 +42,7 @@ export const CartClient: NextPage<CartClientProps> = ({}) => {
         <div className="justify-self-end uppercase">Total</div>
       </div>
       <div>
-        {cartProducts.map((product) => (
+        {cartProducts.map((product: CardProductType) => (
           <CartItemContent key={product.id} item={product} />
         ))}
       </div>
