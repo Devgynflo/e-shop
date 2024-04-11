@@ -1,19 +1,23 @@
 "use client";
 
-import { CardProductType } from "@/@types";
+import { CardProductType, SafeUser } from "@/@types";
 import { Heading } from "@/app/components/heading";
 import { Button } from "@/app/components/products/details/_components/button";
 import { useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/utils/format-price";
 import { NextPage } from "next";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { MdArrowBack } from "react-icons/md";
 import { CartItemContent } from "./cart-content";
 
-interface CartClientProps {}
+interface CartClientProps {
+  currentUser: SafeUser | null;
+}
 
-export const CartClient: NextPage<CartClientProps> = ({}) => {
+export const CartClient: NextPage<CartClientProps> = ({ currentUser }) => {
   const { cartProducts, handleRemoveAllProducts, cartTotalAmount } = useCart();
+  const router = useRouter();
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
@@ -63,7 +67,23 @@ export const CartClient: NextPage<CartClientProps> = ({}) => {
           <p className="text-slate-500">
             Taxes and shipping calculate at checkout
           </p>
-          <Button onclick={() => {}} label="Checkout" />
+          {currentUser ? (
+            <Button
+              onclick={() => {
+                router.push("/checkout");
+              }}
+              label="Checkout"
+            />
+          ) : (
+            <Button
+              outline
+              onclick={() => {
+                router.push("/login");
+              }}
+              label="Login"
+            />
+          )}
+
           <Link
             href="/"
             className="mt-2 flex items-center gap-2 text-slate-500"

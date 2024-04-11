@@ -1,18 +1,27 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-cart";
+import { Elements } from "@stripe/react-stripe-js";
+import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { NextPage } from "next";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { CheckoutForm } from "./checkout-form";
 
 interface CheckoutClientPageProps {}
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY as string,
+);
 
 const CheckoutClientPage: NextPage<CheckoutClientPageProps> = ({}) => {
   const router = useRouter();
   const { cartProducts, paymentIntent, handleSetPaymentIntent } = useCart();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
 
   console.log("🚀 ~ paymentIntent:", paymentIntent);
@@ -54,7 +63,45 @@ const CheckoutClientPage: NextPage<CheckoutClientPageProps> = ({}) => {
     }
   }, [cartProducts, paymentIntent, router, handleSetPaymentIntent]);
 
-  return <>Checkout</>;
+  const options: StripeElementsOptions = {
+    clientSecret,
+    appearance: {
+      theme: "stripe",
+    },
+  };
+
+  const handleSetpaymentSuccess = useCallback((value: boolean) => {
+    setPaymentSuccess(value);
+  }, []);
+
+  return (
+    <div className="w-full">
+      {clientSecret && cartProducts && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm
+            clientSecret={clientSecret}
+            handleSetPaymentSuccess={handleSetpaymentSuccess}
+          />
+        </Elements>
+      )}
+
+      {loading && <div className="text-center">Loading Checkout</div>}
+      {error && <div className="text-center text-rose-500">Error Checkout</div>}
+      {paymentSuccess && (
+        <div className="flex flex-col items-center gap-4">
+          <div className="text-center text-teal-500">Payment Success</div>
+          <div className="w-full max-w-[220px]">
+            <Button
+              onClick={() => router.push("/order")}
+              className="text-center"
+            >
+              View your order
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default CheckoutClientPage;

@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import Image from "next/image";
+import { RxAvatar } from "react-icons/rx";
 
 interface AvatarProps {
   src?: string | null | undefined;
@@ -7,7 +8,7 @@ interface AvatarProps {
 
 export const Avatar: NextPage<AvatarProps> = ({ src }) => {
   if (!src) {
-    src = "https://i.pravatar.cc/30";
+    return <RxAvatar size={24} />;
   }
   return (
     <Image

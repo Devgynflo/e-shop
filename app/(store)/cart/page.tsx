@@ -1,14 +1,17 @@
+import { getCurrentUser } from "@/actions/getCurrentUser";
 import { Container } from "@/app/components/container";
 import { NextPage } from "next";
 import { CartClient } from "./_components/cart-client";
 
-interface Props {}
+interface CartPageProps {}
 
-const CartPage: NextPage<Props> = ({}) => {
+const CartPage: NextPage<CartPageProps> = async ({}) => {
+  const currentUser = await getCurrentUser();
+
   return (
     <div className="pt-8">
       <Container>
-        <CartClient />
+        <CartClient currentUser={currentUser} />
       </Container>
     </div>
   );

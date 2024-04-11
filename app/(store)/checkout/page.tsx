@@ -1,3 +1,5 @@
+"use client";
+
 import { FormWrap } from "@/app/(auth)/_components/form-wrap";
 import { Container } from "@/app/components/container";
 import { NextPage } from "next";
