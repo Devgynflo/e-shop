@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getCurrentUser } from "@/actions/get-current-user";
 import { NextPage } from "next";
 import { AdminNavbar } from "./_components/navbar";
 import { NullData } from "./_components/null-data";

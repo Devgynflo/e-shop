@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getCurrentUser } from "@/actions/get-current-user";
 import { cn } from "@/lib/utils";
 import { NextPage } from "next";
 import { Redressed } from "next/font/google";
