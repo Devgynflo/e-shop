@@ -1,5 +1,5 @@
 import { CardProductType } from "@/@types";
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getCurrentUser } from "@/actions/get-current-user";
 import { env } from "@/lib/env";
 import { dbAuth } from "@/lib/prisma/db";
 import { NextResponse } from "next/server";

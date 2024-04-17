@@ -15,6 +15,7 @@ interface ProductCardProps {
 
 export const ProductCard: NextPage<ProductCardProps> = ({ product }) => {
   const router = useRouter();
+
   const averageReview = getAverageScore(product.reviews);
 
   return (

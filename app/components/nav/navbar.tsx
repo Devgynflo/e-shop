@@ -5,6 +5,7 @@ import { Redressed } from "next/font/google";
 import Link from "next/link";
 import { Container } from "../container";
 import { CartCount } from "./cart-count";
+import { Categories } from "./categories";
 import { UserMenu } from "./user-menu";
 
 const redressed = Redressed({ subsets: ["latin"], weight: "400" });
@@ -33,6 +34,7 @@ export const Navbar: NextPage<NavbarProps> = async ({}) => {
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   );
 };

@@ -1,7 +1,7 @@
+import { getProductById } from "@/actions/products";
 import { Container } from "@/app/components/container";
 import { ProductDetails } from "@/app/components/products/details";
 import { ProductRatings } from "@/app/components/products/details/_components/ratings";
-import { products } from "@/data/products-seed";
 
 import { NextPage } from "next";
 
@@ -11,10 +11,10 @@ interface ProductPageProps {
   };
 }
 
-const ProductPage: NextPage<ProductPageProps> = ({
+const ProductPage: NextPage<ProductPageProps> = async ({
   params,
 }: ProductPageProps) => {
-  const product = products.find((item) => item.id === params.productId);
+  const product = await getProductById(params.productId);
   return (
     <section className="p-8">
       <Container>

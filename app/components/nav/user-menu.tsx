@@ -4,6 +4,7 @@ import { SafeUser } from "@/@types";
 import { NextPage } from "next";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { Avatar } from "../avatar";
@@ -15,6 +16,7 @@ interface UserMenuProps {
 }
 
 export const UserMenu: NextPage<UserMenuProps> = ({ currentUser }) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -36,16 +38,20 @@ export const UserMenu: NextPage<UserMenuProps> = ({ currentUser }) => {
               <Link href={"/orders"}>
                 <UserMenuItem onClick={toggleOpen}>Your Orders</UserMenuItem>
               </Link>
-              <Link href={"/admin"}>
-                <UserMenuItem onClick={toggleOpen}>
-                  Admin Dashboard
-                </UserMenuItem>
-              </Link>
+              {currentUser.role === "ADMIN" && (
+                <Link href={"/admin"}>
+                  <UserMenuItem onClick={toggleOpen}>
+                    Admin Dashboard
+                  </UserMenuItem>
+                </Link>
+              )}
+
               <hr />
               <UserMenuItem
                 onClick={() => {
                   toggleOpen();
                   signOut();
+                  router.refresh();
                 }}
               >
                 Logout

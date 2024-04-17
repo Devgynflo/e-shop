@@ -1,9 +1,23 @@
+import { getOrders } from "@/actions/orders";
+import { Container } from "@/app/components/container";
+import { Heading } from "@/app/components/heading";
 import { NextPage } from "next";
+import { ManageOrdersClient } from "./_components/manage-orders";
 
 interface ManageOrdersPageProps {}
 
-const ManageOrdersPage: NextPage<ManageOrdersPageProps> = ({}) => {
-  return <div>Manage Orders</div>;
+const ManageOrdersPage: NextPage<ManageOrdersPageProps> = async ({}) => {
+  const orders = await getOrders();
+  return (
+    <div className="pt-8">
+      <Container>
+        <div className="mb-4 mt-8">
+          <Heading title="Manage Products" center />
+        </div>
+        <ManageOrdersClient orders={orders} />
+      </Container>
+    </div>
+  );
 };
 
 export default ManageOrdersPage;

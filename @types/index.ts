@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { Order, User } from "@prisma/client";
 
 export type CardProductType = {
   id: string;
@@ -36,4 +36,8 @@ export type UploadedImageType = {
   color: string;
   colorCode: string;
   image: string;
+};
+
+export type ExtendedOrder = Order & {
+  user: User;
 };

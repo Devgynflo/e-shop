@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getCurrentUser } from "@/actions/get-current-user";
 import { Container } from "@/app/components/container";
 import { NextPage } from "next";
 import { CartClient } from "./_components/cart-client";

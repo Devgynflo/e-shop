@@ -4,6 +4,7 @@ import { CardProductType, SelectedImgType } from "@/@types";
 import { useCart } from "@/hooks/use-cart";
 import { cn } from "@/lib/utils";
 import { getAverageScore } from "@/utils/average-score";
+import { formatPrice } from "@/utils/format-price";
 import { Rating } from "@mui/material";
 import { NextPage } from "next";
 import { useRouter } from "next/navigation";
@@ -25,6 +26,7 @@ const Horizontal = () => {
 export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
   const router = useRouter();
   const average = getAverageScore(product.reviews);
+
   // Hooks
   const { handleProductToCart, cartProducts } = useCart();
   // State
@@ -137,7 +139,7 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
 
             <Button
               className="max-w-[300px]"
-              label="Add to cart"
+              label={formatPrice(product.price)}
               onclick={() => handleProductToCart(cardProduct)}
             />
           </>

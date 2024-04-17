@@ -24,9 +24,6 @@ const CheckoutClientPage: NextPage<CheckoutClientPageProps> = ({}) => {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
 
-  console.log("🚀 ~ paymentIntent:", paymentIntent);
-  console.log("🚀 ~ clientSecret:", clientSecret);
-
   useEffect(() => {
     // TODO: Create a paymentIntnet as soon as the page tools
     if (cartProducts) {
@@ -92,7 +89,7 @@ const CheckoutClientPage: NextPage<CheckoutClientPageProps> = ({}) => {
           <div className="text-center text-teal-500">Payment Success</div>
           <div className="w-full max-w-[220px]">
             <Button
-              onClick={() => router.push("/order")}
+              onClick={() => router.push("/order/")}
               className="text-center"
             >
               View your order

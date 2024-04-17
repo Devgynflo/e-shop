@@ -5,7 +5,7 @@ export interface ProductsParams {
   searchTerm?: string | null;
 }
 
-export default async function getProducts(params: ProductsParams) {
+export async function getProducts(params: ProductsParams) {
   try {
     const { category, searchTerm } = params;
     let searchString = searchTerm;
@@ -50,5 +50,28 @@ export default async function getProducts(params: ProductsParams) {
     return products;
   } catch (error: any) {
     throw new Error(error);
+  }
+}
+
+export async function getProductById(id: string) {
+  try {
+    const product = await dbAuth.product.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        reviews: {
+          include: {
+            user: true,
+          },
+          orderBy: {
+            createdDate: "desc",
+          },
+        },
+      },
+    });
+    return product;
+  } catch (error: any) {
+    throw new error(error);
   }
 }

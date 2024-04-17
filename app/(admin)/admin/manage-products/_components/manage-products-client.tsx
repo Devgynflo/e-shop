@@ -3,10 +3,17 @@
 import { formatPrice } from "@/utils/format-price";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
+import FirebaseApp from "@/lib/firebase/firebase";
 import { Product } from "@prisma/client";
+import axios from "axios";
+import { deleteObject, getStorage, ref } from "firebase/storage";
 import { NextPage } from "next";
-import { MdDone } from "react-icons/md";
-import { OrderStatus } from "../../_components/order-status";
+import { useRouter } from "next/navigation";
+import { useCallback } from "react";
+import toast from "react-hot-toast";
+import { MdCached, MdDelete, MdDone, MdRemoveRedEye } from "react-icons/md";
+import { ActionBtn } from "../../../../components/action-btn";
+import { OrderStatus } from "../../../../components/order-status";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -16,6 +23,59 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
   products,
 }) => {
   let rows: any = [];
+  const router = useRouter();
+  const storage = getStorage(FirebaseApp);
+
+  const handleToggleStock = useCallback(
+    (id: string, inStock: boolean) => {
+      axios
+        .put("/api/product", {
+          id,
+          inStock: !inStock,
+        })
+        .then((res) => {
+          toast.success("Product status updated");
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error("Something went wrong !");
+          console.log("Error handleToggleStock", error);
+        });
+    },
+    [router],
+  );
+
+  const handleDelete = useCallback(
+    async (id: string, images: any[]) => {
+      toast.success("Deleting Produc. Please wait...");
+
+      const handleImageDelete = async () => {
+        try {
+          for (const item of images) {
+            if (item.image) {
+              const imageRef = ref(storage, item.image);
+              await deleteObject(imageRef);
+            }
+          }
+        } catch (error) {
+          return console.log("Deleting images error ", error);
+        }
+      };
+
+      await handleImageDelete();
+      axios
+        .delete(`/api/product/${id}`)
+        .then((res) => {
+          toast.success("Product status deleted");
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error("Something went wrong !");
+          console.log("Error handleDelete", error);
+        });
+    },
+    [storage, router],
+  );
 
   if (products) {
     rows = products.map((product) => {
@@ -77,10 +137,30 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
       headerName: "Actions",
       width: 200,
       renderCell: (params) => {
-        return <div>Action</div>;
+        return (
+          <div className="flex w-full justify-between gap-4 ">
+            <ActionBtn
+              icon={MdCached}
+              onClick={() =>
+                handleToggleStock(params.row.id, params.row.inStock)
+              }
+            />
+            <ActionBtn
+              icon={MdDelete}
+              onClick={() => handleDelete(params.row.id, params.row.images)}
+            />
+            <ActionBtn
+              icon={MdRemoveRedEye}
+              onClick={() => {
+                router.push(`/product/${params.row.id}`);
+              }}
+            />
+          </div>
+        );
       },
     },
   ];
+
   return (
     <div className="m-auto max-w-[1150px] text-xl">
       <div className=" h-[600px] w-full ">
@@ -94,6 +174,7 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
           }}
           pageSizeOptions={[5, 10]}
           checkboxSelection
+          disableRowSelectionOnClick
         />
       </div>
     </div>
