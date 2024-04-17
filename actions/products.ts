@@ -14,6 +14,8 @@ export async function getProducts(params: ProductsParams) {
       searchString = "";
     }
 
+    console.log("🚀 ~ getProducts ~ searchTerm:", searchTerm);
+
     let query: any = {};
     if (category) {
       query.category = category;
@@ -46,6 +48,7 @@ export async function getProducts(params: ProductsParams) {
         },
       },
     });
+    console.log("🚀 ~ getProducts ~ products:", products);
 
     return products;
   } catch (error: any) {

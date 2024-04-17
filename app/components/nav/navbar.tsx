@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Container } from "../container";
 import { CartCount } from "./cart-count";
 import { Categories } from "./categories";
+import { Searchbar } from "./searchbar";
 import { UserMenu } from "./user-menu";
 
 const redressed = Redressed({ subsets: ["latin"], weight: "400" });
@@ -26,7 +27,9 @@ export const Navbar: NextPage<NavbarProps> = async ({}) => {
             >
               E-shop
             </Link>
-            <div className="hidden md:block">Search</div>
+            <div className="hidden md:block">
+              <Searchbar />
+            </div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
               <UserMenu currentUser={currentUser} />

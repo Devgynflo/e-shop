@@ -10,11 +10,13 @@ interface ListProps {
 }
 
 export const List: NextPage<ListProps> = ({ product }) => {
+  if (!product.reviews.length) return null;
+
   return (
     <div>
       <Heading title="Product Review" />
       <div className="mt-2 text-sm">
-        {product.reviews.length ? (
+        {product.reviews.length &&
           product.reviews.map((review: any) => (
             <div key={review.id} className="max-w-[400px]">
               <div className="flex items-center gap-2">
@@ -30,10 +32,7 @@ export const List: NextPage<ListProps> = ({ product }) => {
                 <hr className="my-4" />
               </div>
             </div>
-          ))
-        ) : (
-          <p>No reviews</p>
-        )}
+          ))}
       </div>
     </div>
   );

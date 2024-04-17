@@ -89,7 +89,7 @@ const CheckoutClientPage: NextPage<CheckoutClientPageProps> = ({}) => {
           <div className="text-center text-teal-500">Payment Success</div>
           <div className="w-full max-w-[220px]">
             <Button
-              onClick={() => router.push("/order/")}
+              onClick={() => router.push("/orders")}
               className="text-center"
             >
               View your order

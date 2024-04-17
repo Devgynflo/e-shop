@@ -1,3 +1,5 @@
+"use client";
+
 import { CardProductType } from "@/@types";
 import {
   createContext,
