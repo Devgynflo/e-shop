@@ -2,7 +2,7 @@ import { getProducts } from "@/actions/products";
 import { Container } from "@/app/components/container";
 import { Heading } from "@/app/components/heading";
 import { NextPage } from "next";
-import { ManageProductsClient } from "./_components/manage-products-client";
+import { ManageProductsClient } from "../../../components/admin/manage-products-client";
 
 interface ManageProductsPageProps {}
 

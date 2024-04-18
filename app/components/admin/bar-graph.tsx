@@ -18,7 +18,6 @@ interface BarGraphProps {
 }
 
 export const BarGraph: NextPage<BarGraphProps> = ({ data }) => {
-  console.log("🚀 ~ data:", data);
   if (!data.length) return null;
 
   const labels = data.map((item) => item.day);

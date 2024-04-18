@@ -1,5 +1,5 @@
 import { ProductsParams, getProducts } from "@/actions/products";
-import { NullData } from "@/app/(admin)/admin/_components/null-data";
+import { NullData } from "@/app/components/null-data";
 import { NextPage } from "next";
 import { ProductCard } from "./card";
 

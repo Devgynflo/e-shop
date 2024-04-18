@@ -6,9 +6,8 @@ export async function getGraphData() {
   try {
     // Get the start and end dates for the data range ( 7 days ago today)
     const startDate = moment().subtract(6, "days").startOf("day");
-    console.log("🚀 ~ getGraphData ~ startDate:", startDate);
+
     const endDate = moment().endOf("day");
-    console.log("🚀 ~ getGraphData ~ endDate:", endDate);
 
     // Query the database to get order data grouped by createdDate
     const result = await dbAuth.order.groupBy({
@@ -25,8 +24,6 @@ export async function getGraphData() {
       },
     });
 
-    console.log("🚀 ~ getGraphData ~ result:", result);
-
     // Initialize an object to aggregate the date by day
     const aggregateData: {
       [day: string]: GraphData;
@@ -34,13 +31,11 @@ export async function getGraphData() {
 
     // Create a clone of the start date to iterate over each day
     const currentDate = startDate.clone();
-    console.log("🚀 ~ getGraphData ~ currentDate:", currentDate);
 
     // Iterate over each day in the date range
     while (currentDate <= endDate) {
       // Format the day as a string (e.g.. 'Monday')
       const day = currentDate.format("dddd");
-      console.log("day<<<", day, currentDate);
 
       // Initialize the aggregated data for the day with the day, date, and totalAmount
       aggregateData[day] = {

@@ -5,8 +5,8 @@ import { getOrders } from "@/actions/orders";
 import { getProducts } from "@/actions/products";
 import { Container } from "@/app/components/container";
 import { NextPage } from "next";
-import { BarGraph } from "./_components/bar-graph";
-import { Summary } from "./_components/summary";
+import { BarGraph } from "../../components/admin/bar-graph";
+import { Summary } from "../../components/admin/summary";
 
 interface AdminPageProps {}
 

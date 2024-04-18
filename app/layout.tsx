@@ -4,7 +4,9 @@ import { cn } from "@/lib/utils";
 import CartProvider from "@/providers/Cart-provider";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
+import { Categories } from "./components/nav/categories";
 import "./globals.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
@@ -34,7 +36,11 @@ export default async function RootLayout({
         <CartProvider>
           <div className="flex min-h-screen flex-col">
             <Navbar />
-            <main className="flex-grow">{children}</main>
+            <Suspense>
+              <Categories />
+              <main className="flex-grow">{children}</main>
+            </Suspense>
+
             <Footer />
           </div>
         </CartProvider>

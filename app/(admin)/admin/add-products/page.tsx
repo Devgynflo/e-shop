@@ -1,7 +1,7 @@
-import { FormWrap } from "@/app/(auth)/_components/form-wrap";
 import { Container } from "@/app/components/container";
+import { FormWrap } from "@/app/components/form-wrap";
 import { NextPage } from "next";
-import { AddProductForm } from "../_components/add-product-form";
+import { AddProductForm } from "../../../components/admin/add-product-form";
 
 interface AddProductPageProps {}
 

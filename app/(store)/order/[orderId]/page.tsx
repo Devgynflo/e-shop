@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/actions/get-current-user";
 import { getOrderByOrderId } from "@/actions/orders";
 import { Container } from "@/app/components/container";
 import { NextPage } from "next";
-import { OrderDetails } from "../_components/order-details";
+import { OrderDetails } from "../../../components/store/order-details";
 
 interface OrderPageByOrderIdProps {
   params: {

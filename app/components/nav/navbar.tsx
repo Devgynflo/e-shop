@@ -5,7 +5,6 @@ import { Redressed } from "next/font/google";
 import Link from "next/link";
 import { Container } from "../container";
 import { CartCount } from "./cart-count";
-import { Categories } from "./categories";
 import { Searchbar } from "./searchbar";
 import { UserMenu } from "./user-menu";
 
@@ -37,7 +36,6 @@ export const Navbar: NextPage<NavbarProps> = async ({}) => {
           </div>
         </Container>
       </div>
-      <Categories />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/actions/get-current-user";
 import { NextPage } from "next";
-import { AdminNavbar } from "./_components/navbar";
-import { NullData } from "./_components/null-data";
+import { AdminNavbar } from "../../components/admin/navbar";
+import { NullData } from "../../components/null-data";
 
 export const metadata = {
   title: `E-shop Admin`,

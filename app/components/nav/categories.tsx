@@ -5,7 +5,6 @@ import { NextPage } from "next";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Container } from "../container";
 import { CaterogyItem } from "./category-item";
-
 interface CategoriesProps {}
 
 export const Categories: NextPage<CategoriesProps> = ({}) => {

@@ -4,7 +4,7 @@ import { Container } from "@/app/components/container";
 import { Heading } from "@/app/components/heading";
 import { NextPage } from "next";
 import { redirect } from "next/navigation";
-import { OrderClient } from "./_components/order-client";
+import { OrderClient } from "../../components/store/order-client";
 
 interface ManageOrdersPageProps {}
 

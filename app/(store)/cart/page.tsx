@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/actions/get-current-user";
 import { Container } from "@/app/components/container";
 import { NextPage } from "next";
-import { CartClient } from "./_components/cart-client";
+import { CartClient } from "../../components/store/cart-client";
 
 interface CartPageProps {}
 

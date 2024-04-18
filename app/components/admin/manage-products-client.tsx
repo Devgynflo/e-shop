@@ -12,8 +12,8 @@ import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
 import { MdCached, MdDelete, MdDone, MdRemoveRedEye } from "react-icons/md";
-import { ActionBtn } from "../../../../components/action-btn";
-import { OrderStatus } from "../../../../components/order-status";
+import { ActionBtn } from "../action-btn";
+import { OrderStatus } from "../order-status";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -64,7 +64,7 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
 
       await handleImageDelete();
       axios
-        .delete(`/api/product/${id}`)
+        .delete(`/api/products/${id}`)
         .then((res) => {
           toast.success("Product status deleted");
           router.refresh();

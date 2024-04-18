@@ -2,7 +2,7 @@ import { getOrders } from "@/actions/orders";
 import { Container } from "@/app/components/container";
 import { Heading } from "@/app/components/heading";
 import { NextPage } from "next";
-import { ManageOrdersClient } from "./_components/manage-orders";
+import { ManageOrdersClient } from "../../../components/admin/manage-orders";
 
 interface ManageOrdersPageProps {}
 
