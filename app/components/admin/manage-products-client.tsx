@@ -152,7 +152,7 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
             <ActionBtn
               icon={MdRemoveRedEye}
               onClick={() => {
-                router.push(`/product/${params.row.id}`);
+                router.push(`/products/${params.row.id}`);
               }}
             />
           </div>
