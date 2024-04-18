@@ -41,3 +41,5 @@ export type UploadedImageType = {
 export type ExtendedOrder = Order & {
   user: User;
 };
+
+export type GraphData = { day: string; date: string; totalAmount: number };
