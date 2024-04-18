@@ -43,7 +43,7 @@ export async function POST(req: Request, res: NextApiResponse) {
       }
       break;
     default:
-      console.log(`Unhandled event type: ${event.type}`);
+      //console.log(`Unhandled event type: ${event.type}`);
   }
 
   return new NextResponse(null, { status: 200 });

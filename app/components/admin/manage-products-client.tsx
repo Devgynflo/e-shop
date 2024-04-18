@@ -39,7 +39,7 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
         })
         .catch((error) => {
           toast.error("Something went wrong !");
-          console.log("Error handleToggleStock", error);
+          //console.log("Error handleToggleStock", error);
         });
     },
     [router],
@@ -71,7 +71,7 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
         })
         .catch((error) => {
           toast.error("Something went wrong !");
-          console.log("Error handleDelete", error);
+          //console.log("Error handleDelete", error);
         });
     },
     [storage, router],

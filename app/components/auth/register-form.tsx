@@ -2,36 +2,37 @@
 
 import { SafeUser } from "@/@types";
 import { Heading } from "@/app/components/heading";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { RegisterSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Inputs } from "@/app/components/inputs/inputs";
+import { Button } from "@/app/components/products/details/_components/button";
 import axios from "axios";
 import { NextPage } from "next";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { AiOutlineGoogle } from "react-icons/ai";
-import * as z from "zod";
 
 interface RegisterFormProps {
   currentUser: SafeUser | null;
 }
 
 export const RegisterForm: NextPage<RegisterFormProps> = ({ currentUser }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>({
+    defaultValues: {
+      email: "",
+      name: "",
+      password: "",
+    },
+  });
 
   useEffect(() => {
     if (currentUser) {
@@ -40,16 +41,7 @@ export const RegisterForm: NextPage<RegisterFormProps> = ({ currentUser }) => {
     }
   }, [currentUser, router]);
 
-  const form = useForm<z.infer<typeof RegisterSchema>>({
-    resolver: zodResolver(RegisterSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      name: "",
-    },
-  });
-
-  const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
+  const onSubmit = (values: FieldValues) => {
     setIsLoading(true);
     axios.post("/api/register", values).then(() => {
       toast.success("Account created");
@@ -61,7 +53,7 @@ export const RegisterForm: NextPage<RegisterFormProps> = ({ currentUser }) => {
       })
         .then((callback) => {
           if (callback?.ok) {
-            router.push("/cart");
+            router.push("/");
             router.refresh();
             toast.success("Logged In");
           }
@@ -82,83 +74,50 @@ export const RegisterForm: NextPage<RegisterFormProps> = ({ currentUser }) => {
   return (
     <>
       <Heading title="Sign up for E~Shop" />
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-4">
-            <Button
-              onClick={(e) => {
-                e.stopPropagation()
-                signIn("google");
-              }}
-              variant={"outline"}
-              className="flex w-full items-center gap-x-2"
-            >
-              <AiOutlineGoogle />
-              Sign up with Google
-            </Button>
-            <hr className="h-px w-full bg-slate-300" />
-            <FormField
-              disabled={isLoading}
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="John Doe" type="text" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              disabled={isLoading}
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="john.doe@example.com"
-                      type="email"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              disabled={isLoading}
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="******" type="password" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? (
-                <span className="loading loading-dots loading-md text-white" />
-              ) : (
-                <>Create an account</>
-              )}
-            </Button>
-            <p className="text-sm">
-              Already have an account ?{" "}
-              <Link className="underline" href={"/login"}>
-                Log in
-              </Link>
-            </p>
-          </div>
-        </form>
-      </Form>
+      <Button
+        outline
+        label="Sign up with Google"
+        icon={AiOutlineGoogle}
+        onclick={() => {}}
+      />
+      <hr className="h-px w-full bg-slate-300" />
+      <Inputs
+        id="name"
+        label="Name"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+        type={"text"}
+      />
+      <Inputs
+        id="email"
+        label="Email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+        type={"text"}
+      />
+      <Inputs
+        id="password"
+        label="Password"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+        type={"password"}
+      />
+      <Button
+        label={isLoading ? "Loading..." : "Sign up"}
+        onclick={handleSubmit(onSubmit)}
+      />
+      <p className="text-sm">
+        Already have an account ?{" "}
+        <Link className="underline" href={"/login"}>
+          Log in
+        </Link>
+      </p>
     </>
   );
 };

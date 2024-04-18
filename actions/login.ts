@@ -33,7 +33,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
       success: "User connected !",
     };
   } catch (error) {
-    console.log("🚀 ~ login ~ error:", error);
+    //console.log("🚀 ~ login ~ error:", error);
     throw error;
   }
 };

@@ -123,13 +123,13 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
                 (snapshot) => {
                   const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                  console.log("Upload is " + progress + "% done");
+                  //console.log("Upload is " + progress + "% done");
                   switch (snapshot.state) {
                     case "paused":
-                      console.log("Upload is paused");
+                      //console.log("Upload is paused");
                       break;
                     case "running":
-                      console.log("Upload is running");
+                      //console.log("Upload is running");
                       break;
                   }
                 },
@@ -144,11 +144,11 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
                         ...item,
                         image: downloadURL,
                       });
-                      console.log("File available at", downloadURL);
+                      //console.log("File available at", downloadURL);
                       resolve();
                     })
                     .catch((error) => {
-                      console.log("error uploading", error);
+                      //console.log("error uploading", error);
                       reject(error);
                     });
                 },
@@ -158,7 +158,7 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
         }
       } catch (error) {
         setIsLoading(false);
-        console.log("error uploading", error);
+        //console.log("error uploading", error);
         return toast.error("Error handling image uploads");
       }
     };

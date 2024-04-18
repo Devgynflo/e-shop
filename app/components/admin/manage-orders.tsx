@@ -42,7 +42,7 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
         })
         .catch((error: any) => {
           toast.error("Something went wrong !");
-          console.log("error", error);
+          //console.log("error", error);
         });
     },
     [router],
@@ -60,7 +60,7 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
         })
         .catch((error: any) => {
           toast.error("Something went wrong !");
-          console.log("error", error);
+          //console.log("error", error);
         });
     },
     [router],

@@ -54,7 +54,7 @@ const CheckoutClientPage: NextPage<CheckoutClientPageProps> = ({}) => {
         })
         .catch((error: any) => {
           setError(true);
-          console.log("[CHECKOUT_CLIENT]", error);
+          //console.log("[CHECKOUT_CLIENT]", error);
           toast.error("Something went wrong !");
         });
     }
