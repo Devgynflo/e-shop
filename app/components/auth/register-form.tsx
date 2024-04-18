@@ -78,7 +78,9 @@ export const RegisterForm: NextPage<RegisterFormProps> = ({ currentUser }) => {
         outline
         label="Sign up with Google"
         icon={AiOutlineGoogle}
-        onclick={() => {}}
+        onclick={() => {
+          signIn("google");
+        }}
       />
       <hr className="h-px w-full bg-slate-300" />
       <Inputs
