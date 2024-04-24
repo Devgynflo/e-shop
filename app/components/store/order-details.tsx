@@ -19,24 +19,24 @@ export const OrderDetails: NextPage<OrderDetailsProps> = ({ order }) => {
       </div>
       <div>Order ID: {order.id}</div>
       <div>
-        Total Amount :{" "}
+        Montant Total :{" "}
         <span className="font-bold">{formatPrice(order.amount / 100)}</span>
       </div>
       <div className="flex items-center gap-2">
-        <div>Payment Status:</div>
+        <div>Staus du paiement:</div>
         <div>
           {order.status === "pending" && (
             <OrderStatus
               bg="bg-slate-200"
               color="text-slate-700"
               icon={MdAccessTimeFilled}
-              text="pending"
+              text="en attente"
             />
           )}
 
           {order.status === "complete" && (
             <OrderStatus
-              text="completed"
+              text="payé"
               bg="bg-purple-200"
               color="text-purple-700"
               icon={MdDone}
@@ -45,14 +45,14 @@ export const OrderDetails: NextPage<OrderDetailsProps> = ({ order }) => {
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <div>Delivery Status:</div>
+        <div>Reception:</div>
         <div>
           {order.deliveryStatus === "pending" && (
             <OrderStatus
               bg="bg-slate-200"
               color="text-slate-700"
               icon={MdAccessTimeFilled}
-              text="pending"
+              text="en attente"
             />
           )}
 
@@ -61,13 +61,13 @@ export const OrderDetails: NextPage<OrderDetailsProps> = ({ order }) => {
               bg="bg-purple-200"
               color="text-purple-700"
               icon={MdDone}
-              text="dispatched"
+              text="envoyé"
             />
           )}
 
           {order.deliveryStatus === "delivered" && (
             <OrderStatus
-              text="delivered"
+              text="delivré"
               bg="bg-green-200"
               color="text-green-700"
               icon={MdDone}
@@ -77,11 +77,11 @@ export const OrderDetails: NextPage<OrderDetailsProps> = ({ order }) => {
       </div>
       <div>Date: {moment(order.createDate).fromNow()}</div>
       <div>
-        <h2 className="mb-2 mt-4 font-semibold">Product ordered</h2>
+        <h2 className="mb-2 mt-4 font-semibold">Produits commandés</h2>
         <div className="grid grid-cols-5 items-center gap-4 pb-2 text-xs">
-          <div className="col-span-2 justify-self-start">PRODUCT</div>
-          <div className="justify-self-center">PRICE</div>
-          <div className="justify-self-center">QTY</div>
+          <div className="col-span-2 justify-self-start">PRODUIT</div>
+          <div className="justify-self-center">PRIX</div>
+          <div className="justify-self-center">QTe</div>
           <div className="justify-self-start">TOTAL</div>
         </div>
         {order.products &&

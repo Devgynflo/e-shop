@@ -34,11 +34,11 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
           inStock: !inStock,
         })
         .then((res) => {
-          toast.success("Product status updated");
+          toast.success("Produit mis à jour");
           router.refresh();
         })
         .catch((error) => {
-          toast.error("Something went wrong !");
+          toast.error("Quelque chose ne va pas!");
           //console.log("Error handleToggleStock", error);
         });
     },
@@ -47,7 +47,7 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
 
   const handleDelete = useCallback(
     async (id: string, images: any[]) => {
-      toast.success("Deleting Produc. Please wait...");
+      toast.success("Suppression du produit. Patientez...");
 
       const handleImageDelete = async () => {
         try {
@@ -66,11 +66,11 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
       axios
         .delete(`/api/products/${id}`)
         .then((res) => {
-          toast.success("Product status deleted");
+          toast.success("Produit supprimé");
           router.refresh();
         })
         .catch((error) => {
-          toast.error("Something went wrong !");
+          toast.error("Quelque chose ne vas pas !");
           //console.log("Error handleDelete", error);
         });
     },
@@ -96,7 +96,7 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
     { field: "name", headerName: "Name", width: 220 },
     {
       field: "price",
-      headerName: "Price (EUR)",
+      headerName: "Prix (EUR)",
       width: 100,
       renderCell: (params) => {
         return (
@@ -104,25 +104,25 @@ export const ManageProductsClient: NextPage<ManageProductsClientProps> = ({
         );
       },
     },
-    { field: "category", headerName: "Category", width: 100 },
-    { field: "brand", headerName: "BRAND", width: 100 },
+    { field: "categorie", headerName: "Category", width: 100 },
+    { field: "marque", headerName: "BRAND", width: 100 },
     {
       field: "inStock",
-      headerName: "In Stock",
+      headerName: "En stock",
       width: 120,
       renderCell: (params) => {
         return (
           <div>
             {params.row.inStock === true ? (
               <OrderStatus
-                text="In Stock"
+                text="En stock"
                 bg="bg-teal-200"
                 color="text-teal-700"
                 icon={MdDone}
               />
             ) : (
               <OrderStatus
-                text="Out of stock"
+                text="Epuisé"
                 bg="bg-rose-200"
                 color="text-rose-700"
                 icon={MdDone}

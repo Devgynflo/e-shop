@@ -39,10 +39,10 @@ export const OrderClient: NextPage<OrderClientProps> = ({ orders }) => {
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 220 },
-    { field: "customer", headerName: "Customer Name", width: 130 },
+    { field: "customer", headerName: "Nom du client", width: 130 },
     {
       field: "amount",
-      headerName: "Amount (EUR)",
+      headerName: "Montant (EUR)",
       width: 130,
       renderCell: (params) => {
         return (
@@ -52,14 +52,14 @@ export const OrderClient: NextPage<OrderClientProps> = ({ orders }) => {
     },
     {
       field: "paymentStatus",
-      headerName: "Payment Status",
+      headerName: "Status du paiement",
       width: 130,
       renderCell: (params) => {
         return (
           <div>
             {params.row.paymentStatus === "pending" && (
               <OrderStatus
-                text="pending"
+                text="en attente"
                 bg="bg-slate-200"
                 color="text-slate-700"
                 icon={MdAccessTimeFilled}
@@ -68,7 +68,7 @@ export const OrderClient: NextPage<OrderClientProps> = ({ orders }) => {
 
             {params.row.paymentStatus === "complete" && (
               <OrderStatus
-                text="completed"
+                text="réglé"
                 bg="bg-purple-200"
                 color="text-purple-700"
                 icon={MdDone}
@@ -81,14 +81,14 @@ export const OrderClient: NextPage<OrderClientProps> = ({ orders }) => {
 
     {
       field: "deliveredStatus",
-      headerName: "Delivery Status",
+      headerName: "Réception",
       width: 130,
       renderCell: (params) => {
         return (
           <div>
             {params.row.deliveryStatus === "pending" && (
               <OrderStatus
-                text="pending"
+                text="en attente"
                 bg="bg-slate-200"
                 color="text-slate-700"
                 icon={MdAccessTimeFilled}
@@ -97,7 +97,7 @@ export const OrderClient: NextPage<OrderClientProps> = ({ orders }) => {
 
             {params.row.deliveryStatus === "dispatched" && (
               <OrderStatus
-                text="dispatched"
+                text="en livraison"
                 bg="bg-purple-200"
                 color="text-purple-700"
                 icon={MdDeliveryDining}
@@ -106,7 +106,7 @@ export const OrderClient: NextPage<OrderClientProps> = ({ orders }) => {
 
             {params.row.deliveryStatus === "delivered" && (
               <OrderStatus
-                text="delivered"
+                text="délivré"
                 bg="bg-green-200"
                 color="text-green-700"
                 icon={MdDone}

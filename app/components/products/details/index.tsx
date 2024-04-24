@@ -89,21 +89,21 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
         <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
         <div className="flex items-center gap-2">
           <Rating value={average} readOnly />
-          <div>{product.reviews.length} reviews</div>
+          <div>{product.reviews.length} notes</div>
         </div>
         <Horizontal />
         <div className="text-justify">{product.description}</div>
         <Horizontal />
         <div>
-          <span className="font-semibold uppercase">category: </span>{" "}
+          <span className="font-semibold uppercase">categorie: </span>{" "}
           {product.category}
         </div>
         <div>
-          <span className="font-semibold uppercase">brand: </span>{" "}
+          <span className="font-semibold uppercase">marque: </span>{" "}
           {product.brand}
         </div>
         <div className={cn(product.inStock ? "text-teal-500" : "text-red-500")}>
-          {product.inStock ? "In stock" : "Out of stock"}
+          {product.inStock ? "En Stock" : "Victime de son succès"}
         </div>
         <Horizontal />
 
@@ -111,12 +111,12 @@ export const ProductDetails: NextPage<ProductDetailsProps> = ({ product }) => {
           <>
             <p className="mb-2 flex items-center gap-2 text-slate-500">
               <MdCheckCircle size={20} className="text-teal-500" />
-              <span>Product already added in your cart</span>
+              <span>Produit présent dans votre panier</span>
             </p>
             <div>
               <Button
                 className="max-w-[300px]"
-                label="View Cart"
+                label="Panier"
                 outline
                 onclick={() => router.push("/cart")}
               />

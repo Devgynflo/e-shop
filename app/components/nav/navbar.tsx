@@ -24,7 +24,7 @@ export const Navbar: NextPage<NavbarProps> = async ({}) => {
               href={"/"}
               className={cn(redressed.className, "font-semi-bold text-2xl ")}
             >
-              E-shop
+              E-shop Gynflo
             </Link>
             <div className="hidden md:block">
               <Searchbar />

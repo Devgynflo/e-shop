@@ -55,28 +55,28 @@ export const RegisterForm: NextPage<RegisterFormProps> = ({ currentUser }) => {
           if (callback?.ok) {
             router.push("/");
             router.refresh();
-            toast.success("Logged In");
+            toast.success("Connexion");
           }
 
           if (callback?.error) {
             toast.error(callback.error);
           }
         })
-        .catch(() => toast.error("Something wnet wrong !"))
+        .catch(() => toast.error("Quelque chose s'est mal passée !"))
         .finally(() => setIsLoading(false));
     });
   };
 
   if (currentUser) {
-    return <p className="text-center">Logged in. Redirecting...</p>;
+    return <p className="text-center">Connecté. Redirection...</p>;
   }
 
   return (
     <>
-      <Heading title="Sign up for E~Shop" />
+      <Heading title="Enregistrez-vous" />
       <Button
         outline
-        label="Sign up with Google"
+        label="Connexion avec Google"
         icon={AiOutlineGoogle}
         onclick={() => {
           signIn("google");
@@ -111,13 +111,13 @@ export const RegisterForm: NextPage<RegisterFormProps> = ({ currentUser }) => {
         type={"password"}
       />
       <Button
-        label={isLoading ? "Loading..." : "Sign up"}
+        label={isLoading ? "Chargement..." : "Créer un compte"}
         onclick={handleSubmit(onSubmit)}
       />
       <p className="text-sm">
-        Already have an account ?{" "}
+        Déjà un compte ?{" "}
         <Link className="underline" href={"/login"}>
-          Log in
+          Connectez-vous
         </Link>
       </p>
     </>

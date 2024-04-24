@@ -17,7 +17,7 @@ export const SetProductColor: NextPage<SetProductColorProps> = ({
 }) => {
   return (
     <div className="flex items-center gap-4">
-      <span className="font-semibold uppercase">color:</span>
+      <span className="font-semibold uppercase">couleur:</span>
       <div className="flex gap-1">
         {images.map((img) => (
           <div

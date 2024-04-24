@@ -5,7 +5,7 @@ import { NullData } from "../../components/null-data";
 
 export const metadata = {
   title: `E-shop Admin`,
-  description: `E~Shop Admin Dashboard`,
+  description: `Tableau de bord Admin`,
 };
 
 interface AdminLayoutProps {
@@ -16,7 +16,7 @@ const AdminLayout: NextPage<AdminLayoutProps> = async ({ children }) => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser || currentUser.role !== "ADMIN") {
-    return <NullData title="Acces denied" />;
+    return <NullData title="Accès refusé" />;
   }
 
   return (

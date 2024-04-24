@@ -36,12 +36,12 @@ export const UserMenu: NextPage<UserMenuProps> = ({ currentUser }) => {
           {currentUser && (
             <div>
               <Link href={"/orders"}>
-                <UserMenuItem onClick={toggleOpen}>Your Orders</UserMenuItem>
+                <UserMenuItem onClick={toggleOpen}>Commandes</UserMenuItem>
               </Link>
               {currentUser.role === "ADMIN" && (
                 <Link href={"/admin"}>
                   <UserMenuItem onClick={toggleOpen}>
-                    Admin Dashboard
+                    Tableau de bord de l&apos;admin
                   </UserMenuItem>
                 </Link>
               )}
@@ -54,7 +54,7 @@ export const UserMenu: NextPage<UserMenuProps> = ({ currentUser }) => {
                   router.refresh();
                 }}
               >
-                Logout
+                Déconnexion
               </UserMenuItem>
             </div>
           )}
@@ -62,10 +62,10 @@ export const UserMenu: NextPage<UserMenuProps> = ({ currentUser }) => {
           {!currentUser && (
             <div>
               <Link href={"/login"}>
-                <UserMenuItem onClick={toggleOpen}>Login</UserMenuItem>
+                <UserMenuItem onClick={toggleOpen}>Connexion</UserMenuItem>
               </Link>
               <Link href={"/register"}>
-                <UserMenuItem onClick={toggleOpen}>Sign up</UserMenuItem>
+                <UserMenuItem onClick={toggleOpen}>Enregistrement</UserMenuItem>
               </Link>
             </div>
           )}

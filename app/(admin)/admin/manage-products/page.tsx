@@ -13,7 +13,7 @@ const ManageProductsPage: NextPage<ManageProductsPageProps> = async ({}) => {
     <div className="pt-8">
       <Container>
         <div className="mb-4 mt-8">
-          <Heading title="Manage Products" center />
+          <Heading title="Gestion des produits" center />
         </div>
         <ManageProductsClient products={products} />
       </Container>

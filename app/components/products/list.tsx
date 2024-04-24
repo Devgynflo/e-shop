@@ -14,7 +14,7 @@ export const ProductList: NextPage<ProductListProps> = async ({
 
   if (!products.length) {
     return (
-      <NullData title="Ooops! No products found.Click 'All' to clear filters" />
+      <NullData title="Aucun produits. Cliquez sur 'All' pour remettre à zéro le filtre." />
     );
   }
 

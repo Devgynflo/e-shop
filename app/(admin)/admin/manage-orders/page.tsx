@@ -12,7 +12,7 @@ const ManageOrdersPage: NextPage<ManageOrdersPageProps> = async ({}) => {
     <div className="pt-8">
       <Container>
         <div className="mb-4 mt-8">
-          <Heading title="Manage Products" center />
+          <Heading title="Gestion des commandes" center />
         </div>
         <ManageOrdersClient orders={orders} />
       </Container>

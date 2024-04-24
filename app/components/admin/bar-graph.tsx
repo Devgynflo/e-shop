@@ -27,7 +27,7 @@ export const BarGraph: NextPage<BarGraphProps> = ({ data }) => {
     labels,
     datasets: [
       {
-        label: "Sale Amounts",
+        label: "Montant des ventes",
         data: amounts,
         backgroundColor: "rgba(75,192,192,0.6)",
         borderColor: "rgba(75,192,192,1)",

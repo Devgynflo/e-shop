@@ -48,26 +48,26 @@ export const LoginForm: NextPage<LoginFormProps> = ({ currentUser }) => {
         if (callback?.ok) {
           router.push("/");
           router.refresh();
-          toast.success("Logged In");
+          toast.success("Connecté");
         }
 
         if (callback?.error) {
           toast.error(callback.error);
         }
       })
-      .catch(() => toast.error("Something wnet wrong !"))
+      .catch(() => toast.error("Quelque chose s'est mal passée !"))
       .finally(() => setIsLoading(false));
   };
 
   if (currentUser) {
-    return <p className="text-center">Logged in. Redirecting...</p>;
+    return <p className="text-center">Connecté. Redirection</p>;
   }
   return (
     <>
-      <Heading title="Sign in to E~Shop" />
+      <Heading title="Connectez-vous" />
       <Button
         outline
-        label="Continue with Google"
+        label="Connexion avec Google"
         icon={AiOutlineGoogle}
         onclick={() => {
           signIn("google");
@@ -93,13 +93,13 @@ export const LoginForm: NextPage<LoginFormProps> = ({ currentUser }) => {
         type={"password"}
       />
       <Button
-        label={isLoading ? "Loading..." : "Login"}
+        label={isLoading ? "Chargement..." : "Connexion"}
         onclick={handleSubmit(onSubmit)}
       />
       <p className="text-sm">
-        Do not have an account ?{" "}
+        Pas encore de compte?{" "}
         <Link className="underline" href={"/register"}>
-          Sign up
+          Créez-en un
         </Link>
       </p>
     </>

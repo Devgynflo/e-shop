@@ -42,13 +42,13 @@ export const CartItemContent: NextPage<CartContentProps> = ({ item }) => {
               className="text-slate-500 underline"
               onClick={() => removeProductToCart(item.id)}
             >
-              Remove
+              Supprimer
             </button>
           </div>
         </div>
       </div>
       <div className="justify-self-center">{formatPrice(item.price)}</div>
-      <div className="justify-self-end">
+      <div className="justify-self-center">
         <SetQuantity
           cartCounter
           cardProduct={item}

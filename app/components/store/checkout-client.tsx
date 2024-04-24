@@ -82,17 +82,19 @@ const CheckoutClientPage: NextPage<CheckoutClientPageProps> = ({}) => {
         </Elements>
       )}
 
-      {loading && <div className="text-center">Loading Checkout</div>}
-      {error && <div className="text-center text-rose-500">Error Checkout</div>}
+      {loading && <div className="text-center">Chargement du paiement</div>}
+      {error && (
+        <div className="text-center text-rose-500">Erreur de paiement</div>
+      )}
       {paymentSuccess && (
         <div className="flex flex-col items-center gap-4">
-          <div className="text-center text-teal-500">Payment Success</div>
+          <div className="text-center text-teal-500">Paiement validé</div>
           <div className="w-full max-w-[220px]">
             <Button
               onClick={() => router.push("/orders")}
               className="text-center"
             >
-              View your order
+              Voir votre commande
             </Button>
           </div>
         </div>

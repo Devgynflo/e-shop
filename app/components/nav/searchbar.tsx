@@ -37,13 +37,13 @@ export const Searchbar: NextPage<SearchbarProps> = ({}) => {
         className="w-80 rounded-l-md border border-gray-300 p-2 focus:border-[0.5px] focus:border-slate-500 focus:outline-none"
         autoComplete="off"
         type="text"
-        placeholder="Explore E~Shop"
+        placeholder="Explorer E~Shop"
       />
       <button
         className="rounded-r-md bg-slate-700 p-2 text-white hover:opacity-80"
         onClick={handleSubmit(onSubmit)}
       >
-        Search
+        Recherchez...
       </button>
     </div>
   );

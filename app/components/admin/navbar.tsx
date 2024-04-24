@@ -23,28 +23,28 @@ export const AdminNavbar: NextPage<AdminNavbarProps> = ({}) => {
         <div className="flex flex-nowrap items-center justify-between gap-8 overflow-x-auto md:justify-center md:gap-12 ">
           <Link href={"/admin"}>
             <NavbarItems
-              label="Summary"
+              label="Sommaire"
               icon={MdDashboard}
               isSelected={pathname === "/admin"}
             />
           </Link>
           <Link href={"/admin/add-products"}>
             <NavbarItems
-              label="Add products"
+              label="Ajouter un produit"
               icon={MdLibraryAdd}
               isSelected={pathname === "/admin/add-products"}
             />
           </Link>
           <Link href={"/admin/manage-products"}>
             <NavbarItems
-              label="Manage Products"
+              label="Gestion des produits"
               icon={MdDns}
               isSelected={pathname === "/admin/manage-products"}
             />
           </Link>
           <Link href={"/admin/manage-orders"}>
             <NavbarItems
-              label="Manage Orders"
+              label="Gestions des commandes"
               icon={MdFormatListBulleted}
               isSelected={pathname === "/admin/manage-orders"}
             />

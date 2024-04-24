@@ -37,11 +37,11 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
           deliveryStatus: "delivered",
         })
         .then((_res) => {
-          toast.success("Order delivered");
+          toast.success("Commande délivrée");
           router.refresh();
         })
         .catch((error: any) => {
-          toast.error("Something went wrong !");
+          toast.error("Quelque chose ne va pas !");
           //console.log("error", error);
         });
     },
@@ -55,11 +55,11 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
           deliveryStatus: "dispatched",
         })
         .then((_res) => {
-          toast.success("Order dispatched");
+          toast.success("Commande envoyé");
           router.refresh();
         })
         .catch((error: any) => {
-          toast.error("Something went wrong !");
+          toast.error("Quelque chose ne va pas !");
           //console.log("error", error);
         });
     },
@@ -81,10 +81,10 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 220 },
-    { field: "customer", headerName: "Customer Name", width: 130 },
+    { field: "customer", headerName: "Nom du client", width: 130 },
     {
       field: "amount",
-      headerName: "Amount (EUR)",
+      headerName: "Montant (EUR)",
       width: 130,
       renderCell: (params) => {
         return (
@@ -94,14 +94,14 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
     },
     {
       field: "paymentStatus",
-      headerName: "Payment Status",
+      headerName: "Paiement",
       width: 130,
       renderCell: (params) => {
         return (
           <div>
             {params.row.paymentStatus === "pending" && (
               <OrderStatus
-                text="pending"
+                text="en attente"
                 bg="bg-slate-200"
                 color="text-slate-700"
                 icon={MdAccessTimeFilled}
@@ -110,7 +110,7 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
 
             {params.row.paymentStatus === "complete" && (
               <OrderStatus
-                text="completed"
+                text="payé"
                 bg="bg-purple-200"
                 color="text-purple-700"
                 icon={MdDone}
@@ -123,14 +123,14 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
 
     {
       field: "deliveredStatus",
-      headerName: "Delivery Status",
+      headerName: "Reception",
       width: 130,
       renderCell: (params) => {
         return (
           <div>
             {params.row.deliveryStatus === "pending" && (
               <OrderStatus
-                text="pending"
+                text="en attente"
                 bg="bg-slate-200"
                 color="text-slate-700"
                 icon={MdAccessTimeFilled}
@@ -139,7 +139,7 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
 
             {params.row.deliveryStatus === "dispatched" && (
               <OrderStatus
-                text="dispatched"
+                text="envoyé"
                 bg="bg-purple-200"
                 color="text-purple-700"
                 icon={MdDeliveryDining}
@@ -148,7 +148,7 @@ export const ManageOrdersClient: NextPage<ManageOrdersClientProps> = ({
 
             {params.row.deliveryStatus === "delivered" && (
               <OrderStatus
-                text="delivered"
+                text="reception"
                 bg="bg-green-200"
                 color="text-green-700"
                 icon={MdDone}

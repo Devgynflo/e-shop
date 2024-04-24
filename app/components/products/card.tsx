@@ -44,7 +44,7 @@ export const ProductCard: NextPage<ProductCardProps> = ({ product }) => {
             }
           />
         </div>
-        <div>{product.reviews.length} reviews</div>
+        <div>{product.reviews.length} notes</div>
         <div className="font-semibold">{formatPrice(product.price)}</div>
       </div>
     </article>

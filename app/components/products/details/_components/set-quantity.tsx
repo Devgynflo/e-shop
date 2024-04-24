@@ -18,7 +18,7 @@ export const SetQuantity: NextPage<SetQuantityProps> = ({
 }) => {
   return (
     <div className="flex items-center gap-8">
-      {!cartCounter && <div className="font-semibold uppercase">quantity:</div>}
+      {!cartCounter && <div className="font-semibold uppercase">quantité:</div>}
       <div className="flex items-center gap-4 text-base">
         <button
           disabled={cardProduct.quantity === 1 ? true : false}

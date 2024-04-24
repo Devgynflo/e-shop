@@ -35,7 +35,7 @@ export const SelectImage: NextPage<SelectImageProps> = ({
     >
       <input {...getInputProps()} />
       {isDragActive ? (
-        <p>Drop the image here ...</p>
+        <p>Mettez votre image ici ...</p>
       ) : (
         <p>+ {item?.color} Image</p>
       )}

@@ -24,14 +24,14 @@ export const CartClient: NextPage<CartClientProps> = ({ currentUser }) => {
     return (
       <Suspense>
         <section className="flex flex-col items-center">
-          <div className="text-2xl">Your cart is empty</div>
+          <div className="text-2xl">Votre panier est vide</div>
           <div>
             <Link
               href="/"
               className="mt-2 flex items-center gap-2 text-slate-500"
             >
               <MdArrowBack size={20} />
-              <span>Start Shopping</span>
+              <span>Commencez votre shopping</span>
             </Link>
           </div>
         </section>
@@ -42,11 +42,11 @@ export const CartClient: NextPage<CartClientProps> = ({ currentUser }) => {
   return (
     <Suspense>
       <section>
-        <Heading title="Shopping Cart" center />
+        <Heading title="Panier" center />
         <div className="mt-8 grid grid-cols-5 items-center gap-4 pb-2 text-xs">
-          <div className="col-span-2 justify-self-start uppercase">Product</div>
-          <div className="justify-self-center uppercase">Price</div>
-          <div className="justify-self-center uppercase">Quantity</div>
+          <div className="col-span-2 justify-self-start uppercase">Produit</div>
+          <div className="justify-self-center uppercase">Prix</div>
+          <div className="justify-self-center uppercase">Quantité</div>
           <div className="justify-self-end uppercase">Total</div>
         </div>
         <div>
@@ -57,7 +57,7 @@ export const CartClient: NextPage<CartClientProps> = ({ currentUser }) => {
         <div className="flex justify-between gap-4 border-t-[1.5px] border-slate-200 py-4">
           <div className="w-[100px]">
             <Button
-              label="Clear Cart"
+              label="Supprimer le panier"
               onclick={handleRemoveAllProducts}
               small
               outline
@@ -65,18 +65,19 @@ export const CartClient: NextPage<CartClientProps> = ({ currentUser }) => {
           </div>
           <div className="flex flex-col items-start gap-1 text-sm">
             <div className="flex w-full justify-between text-base font-semibold">
-              <span>Subtotal</span>
+              <span>Sous total</span>
               <span>{formatPrice(cartTotalAmount)}</span>
             </div>
             <p className="text-slate-500">
-              Taxes and shipping calculate at checkout
+              Les taxes et les frais d&apos;expédition sont calculés au moment
+              du paiement
             </p>
             {currentUser ? (
               <Button
                 onclick={() => {
                   router.push("/checkout");
                 }}
-                label="Checkout"
+                label="Validez votre panier"
               />
             ) : (
               <Button
@@ -84,7 +85,7 @@ export const CartClient: NextPage<CartClientProps> = ({ currentUser }) => {
                 onclick={() => {
                   router.push("/login");
                 }}
-                label="Login"
+                label="Connexion"
               />
             )}
 
@@ -93,7 +94,7 @@ export const CartClient: NextPage<CartClientProps> = ({ currentUser }) => {
               className="mt-2 flex items-center gap-2 text-slate-500"
             >
               <MdArrowBack size={20} />
-              <span>Continue Shopping</span>
+              <span>Continuer votre shopping</span>
             </Link>
           </div>
         </div>

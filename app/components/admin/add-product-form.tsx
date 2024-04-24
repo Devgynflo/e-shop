@@ -100,14 +100,14 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
     let uploadedImages: UploadedImageType[] = [];
 
     if (!data.category) {
-      return toast.error("Category is not selected");
+      return toast.error("Categorie non selectionné");
     }
     if (!data.images || data.images.length === 0) {
-      return toast.error("No selected images");
+      return toast.error("Aucune images selectionné");
     }
 
     const handleImageUploads = async () => {
-      toast("Creating product, please wait...");
+      toast("Creation du produit, patientez...");
 
       try {
         for (const item of data.images) {
@@ -134,7 +134,7 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
                   }
                 },
                 (error) => {
-                  console.log("error uploading", error);
+                  console.log("Erreur de téléchargement de l'image", error);
                   reject(error);
                 },
                 () => {
@@ -159,7 +159,7 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
       } catch (error) {
         setIsLoading(false);
         //console.log("error uploading", error);
-        return toast.error("Error handling image uploads");
+        return toast.error("Erreur de téléchargement des images");
       }
     };
     await handleImageUploads();
@@ -169,11 +169,11 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
       .post("/api/product", productData)
       .then(() => {
         setIsProductCreated(true);
-        toast.success("Product created");
+        toast.success("Produit crée");
         router.refresh();
       })
       .catch(() => {
-        toast.error("Something went wrong when saving product to db");
+        toast.error("Erreur avec la base de donnée");
       })
       .finally(() => {
         setIsLoading(false);
@@ -182,10 +182,10 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
 
   return (
     <>
-      <Heading title="Add a product" center />
+      <Heading title="Ajoutez un produit" center />
       <Inputs
         id="name"
-        label="Name"
+        label="Nom"
         disabled={isLoading}
         type="text"
         register={register}
@@ -194,7 +194,7 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
       />
       <Inputs
         id="price"
-        label="Price"
+        label="Prix"
         disabled={isLoading}
         type="number"
         register={register}
@@ -203,7 +203,7 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
       />
       <Inputs
         id="brand"
-        label="Brand"
+        label="Marque"
         disabled={isLoading}
         type="text"
         register={register}
@@ -220,12 +220,12 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
       />
       <CustomCheckbox
         id={"inStock"}
-        label={"This product is in stock "}
+        label={"Ce produit est en stock "}
         disabled={isLoading}
         register={register}
       />
       <div className="w-full font-medium">
-        <div className="mb-2 font-bold">Select a category</div>
+        <div className="mb-2 font-bold">Selectionnez une catégorie</div>
         <div className="max-h-[50vh ] grid grid-cols-2 gap-2 overflow-y-auto md:grid-cols-3">
           {categories.map((item) => {
             if (item.label === "All") {
@@ -247,11 +247,12 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
       <div className="flex w-full flex-col flex-wrap gap-4">
         <div>
           <div className="font-bold">
-            Select the available product colors and upload their images.
+            Sélectionnez les couleurs de produits disponibles et téléchargez
+            leurs images.
           </div>
           <div className="text-sm">
-            You must upload an image for each of the color selected otherwise
-            your color selection will be ignored
+            Vous devez télécharger une image pour chacune des couleurs
+            sélectionnées, sinon votre sélection de couleur sera ignorée.
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -269,7 +270,7 @@ export const AddProductForm: NextPage<AddProductFormProps> = ({}) => {
         </div>
       </div>
       <Button
-        label={isLoading ? "Loading..." : "Add Product"}
+        label={isLoading ? "Chargement..." : "Ajoutez le produit"}
         onclick={handleSubmit(onSubmit)}
       />
     </>

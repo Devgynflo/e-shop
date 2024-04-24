@@ -102,7 +102,7 @@ export const AddRating: NextPage<AddRatingProps> = ({ product, user }) => {
         required
       />
       <Button
-        label={isLoading ? "Loading" : "Rate this product"}
+        label={isLoading ? "Chargement" : "Notez ce produit"}
         onclick={handleSubmit(onSubmit)}
       />
     </div>

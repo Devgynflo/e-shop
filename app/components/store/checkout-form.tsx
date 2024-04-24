@@ -72,11 +72,11 @@ export const CheckoutForm: NextPage<CheckoutFormProps> = ({
     <form onSubmit={handleSubmit} id="payment-form">
       <div className="mb-6 ">
         <Heading title="Enter your details to complete checkout" />
-        <h2 className="mb-2  font-semibold">Address Information</h2>
+        <h2 className="mb-2  font-semibold">Adresse</h2>
         <AddressElement
           options={{ mode: "shipping", allowedCountries: ["FR"] }}
         />
-        <h2 className="mb-2 mt-4 font-semibold">Payment Information</h2>
+        <h2 className="mb-2 mt-4 font-semibold">Information du paiement</h2>
         <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
         <div className="py-4 text-center text-2xl font-bold text-slate-700">
           Total: {formatedPrice}
@@ -86,7 +86,7 @@ export const CheckoutForm: NextPage<CheckoutFormProps> = ({
           onClick={() => {}}
           className="w-full"
         >
-          {isLoading ? "Processing..." : "Pay now"}
+          {isLoading ? "Chargement..." : "Commander"}
         </Button>
       </div>
     </form>
